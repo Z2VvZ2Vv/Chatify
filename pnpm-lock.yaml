@@ -8,6 +8,7 @@ specifiers:
   class-variance-authority: ^0.5.2
   eslint: 8.38.0
   eslint-config-next: 13.3.0
+  lucide-react: ^0.144.0
   next: 13.3.0
   postcss: 8.4.21
   react: 18.2.0
@@ -23,6 +24,7 @@ dependencies:
   class-variance-authority: 0.5.2_typescript@5.0.4
   eslint: 8.38.0
   eslint-config-next: 13.3.0_voubu7prgxjfsfbgx5d4sqnwiy
+  lucide-react: 0.144.0_react@18.2.0
   next: 13.3.0_biqbaboplfbrettd7655fr4n2y
   postcss: 8.4.21
   react: 18.2.0
@@ -1692,6 +1694,14 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: false
+
+  /lucide-react/0.144.0_react@18.2.0:
+    resolution: {integrity: sha512-smxwRsaHL9YZxzv4rPWDYJUKGJTCwZxjWMvClS6NBv9qIrYDHIIQdGRcM1pS7mnzUY5dXdIwyHDD0sk3hep/1Q==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /merge2/1.4.1:
