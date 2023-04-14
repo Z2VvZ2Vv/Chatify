@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@next-auth/upstash-redis-adapter': ^3.0.4
   '@types/node': 18.15.11
   '@types/react': 18.0.35
   '@types/react-dom': 18.0.11
@@ -21,6 +22,7 @@ specifiers:
   typescript: 5.0.4
 
 dependencies:
+  '@next-auth/upstash-redis-adapter': 3.0.4_dmxdqibyclp2vy5otsgazgtz7e
   '@types/node': 18.15.11
   '@types/react': 18.0.35
   '@types/react-dom': 18.0.11
@@ -138,6 +140,17 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+    dev: false
+
+  /@next-auth/upstash-redis-adapter/3.0.4_dmxdqibyclp2vy5otsgazgtz7e:
+    resolution: {integrity: sha512-az9hFemtnSry7YAaVvxPEwGZSbnK8xiRLX/C5bDsM1ibQWSx6aIp7QY3Kk4NSdqU6LONkXnjndKKhrUnwEmfFw==}
+    peerDependencies:
+      '@upstash/redis': ^1.0.1
+      next-auth: ^4
+    dependencies:
+      '@upstash/redis': 1.20.2
+      next-auth: 4.22.0_yucv4tfv7v7nrkw2uguegj6e7e
+      uuid: 8.3.2
     dev: false
 
   /@next/env/13.3.0:
