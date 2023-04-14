@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next-auth/upstash-redis-adapter": "^3.0.4",
+    "@types/bcrypt": "^5.0.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
