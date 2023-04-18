@@ -16,6 +16,7 @@ specifiers:
   lucide-react: ^0.144.0
   next: 13.3.0
   next-auth: ^4.22.0
+  nodemailer: ^6.9.1
   postcss: 8.4.21
   react: 18.2.0
   react-dom: 18.2.0
@@ -40,7 +41,8 @@ dependencies:
   eslint-config-next: 13.3.0_voubu7prgxjfsfbgx5d4sqnwiy
   lucide-react: 0.144.0_react@18.2.0
   next: 13.3.0_krg7tz6h6n3fx3eq7tclunioeu
-  next-auth: 4.22.0_yucv4tfv7v7nrkw2uguegj6e7e
+  next-auth: 4.22.0_jf7w2qxa4s3zu4kxtjttjlli3m
+  nodemailer: 6.9.1
   postcss: 8.4.21
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -177,7 +179,7 @@ packages:
       next-auth: ^4
     dependencies:
       '@upstash/redis': 1.20.2
-      next-auth: 4.22.0_yucv4tfv7v7nrkw2uguegj6e7e
+      next-auth: 4.22.0_jf7w2qxa4s3zu4kxtjttjlli3m
       uuid: 8.3.2
     dev: false
 
@@ -1979,7 +1981,7 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: false
 
-  /next-auth/4.22.0_yucv4tfv7v7nrkw2uguegj6e7e:
+  /next-auth/4.22.0_jf7w2qxa4s3zu4kxtjttjlli3m:
     resolution: {integrity: sha512-08+kjnDoE7aQ52O996x6cwA3ffc2CbHIkrCgLYhbE+aDIJBKI0oA9UbIEIe19/+ODYJgpAHHOtJx4izmsgaVag==}
     peerDependencies:
       next: ^12.2.5 || ^13
@@ -1995,6 +1997,7 @@ packages:
       cookie: 0.5.0
       jose: 4.13.2
       next: 13.3.0_krg7tz6h6n3fx3eq7tclunioeu
+      nodemailer: 6.9.1
       oauth: 0.9.15
       openid-client: 5.4.0
       preact: 10.13.2
@@ -2067,6 +2070,11 @@ packages:
 
   /node-releases/2.0.10:
     resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
+    dev: false
+
+  /nodemailer/6.9.1:
+    resolution: {integrity: sha512-qHw7dOiU5UKNnQpXktdgQ1d3OFgRAekuvbJLcdG5dnEo/GtcTHRYM7+UfJARdOFU9WUQO8OiIamgWPmiSFHYAA==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /nopt/5.0.0:
