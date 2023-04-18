@@ -1,0 +1,12 @@
+.body {
+	background-color: #343541;
+  color: #ffffff;
+  min-height: 100vh;
+}
+.defaultButton {
+	background-color: #10a37f;
+	transition: color 0.3s ease-in-out;
+}
+.defaultButton:hover {
+	background-color: #16bd93;
+}
