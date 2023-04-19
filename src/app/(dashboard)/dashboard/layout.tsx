@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 import { Icons, Icon } from "@/components/Icons";
 import SignOutButton from "@/components/SignOutButton";
+import friendRequestsSideBarOptions from "@/components/FriendRequestsSideBarOptions";
+import FriendRequestsSideBarOptions from "@/components/FriendRequestsSideBarOptions";
 
 type LayoutProps = {
 	children: ReactNode;
@@ -20,16 +22,14 @@ type sideBarOption = {
 const sidebarOptions: sideBarOption[] = [
 	{
 		id: 1,
-		name: 'Créer une conversation ',
-		href: '/dashboard/create',
-		Icon: 'MailPlusIcon'
+		name: 'Add friend',
+		href: '/dashboard/add',
+		Icon: 'UserPlus',
 	},
 ]
-
 const Layout = async ({ children }: LayoutProps) => {
 	const session = await getServerSession(authOptions);
 	if (!session) notFound();
-
 	return (
 		<div className='w-full flex h-screen'>
 			<div className='hidden md:flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-y-auto bg-neutral-950 px-6'>
@@ -61,6 +61,11 @@ const Layout = async ({ children }: LayoutProps) => {
 								})}
 							</ul>
 						</li>
+
+						<li>
+							<FriendRequestsSideBarOptions />
+						</li>
+
 						<li className={"-mx-6 mt-auto flex items-center"}>
 							<div className="flex flex-1 items-center gap-x-4 px-6 py-6 text-sm font-semibold leading-6">
 								<div className='flex flex-1 items-center gap-x-4 py-3 text-sm font-semibold leading-6'>
