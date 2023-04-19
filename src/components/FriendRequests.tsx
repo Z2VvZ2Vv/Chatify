@@ -12,6 +12,7 @@ const FriendRequests = ({sessionId, incomingFriendRequests}: FriendRequestsProps
     return (
        <>
            {friendRequests.length === 0 ? (
+               // eslint-disable-next-line react/no-unescaped-entities
                <p className={'text-sm'}>Aucune demande d'ami</p>
            ): (
                friendRequests.map((request) => (
