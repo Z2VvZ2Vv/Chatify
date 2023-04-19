@@ -1,7 +1,15 @@
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
-export default async function page() {
+const page = async ({}) => {
 	const session = await getServerSession(authOptions);
-	return <pre>{JSON.stringify(session)}</pre>;
-}
+	if (!session) notFound();
+
+	return (
+		<div className='container py-12'></div>
+	)
+};
+
+export default page;
