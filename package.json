@@ -22,6 +22,7 @@
     "bcrypt": "^5.1.0",
     "class-variance-authority": "^0.5.2",
     "clsx": "^1.2.1",
+    "csstype": "^3.0.1",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "lucide-react": "^0.144.0",
