@@ -2,14 +2,17 @@
 
 import { addFriendValidator } from '@/lib/validations/add-friend'
 import axios, { AxiosError } from 'axios'
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { z } from 'zod'
-import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import {Button} from "@/components/ui/Button";
+import {useForm} from "react-hook-form";
+
+interface AddFriendButtonProps {}
 
 type FormData = z.infer<typeof addFriendValidator>
 
-const AddFriendButton = ({}) => {
+const AddFriendButton: FC<AddFriendButtonProps> = ({}) => {
     const [showSuccessState, setShowSuccessState] = useState<boolean>(false)
 
     const {
@@ -41,7 +44,7 @@ const AddFriendButton = ({}) => {
                 return
             }
 
-            setError('email', { message: 'Something went wrong.' })
+            setError('email', { message: 'Une erreur est survenue' })
         }
     }
 
@@ -50,25 +53,25 @@ const AddFriendButton = ({}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='max-w-sm'>
+        <form onSubmit={handleSubmit(onSubmit)} className='w-96 m-auto'>
             <label
                 htmlFor='email'
-                className='block text-sm font-medium leading-6 text-gray-900'>
-                Add friend by E-Mail
+                className='block text-sm font-medium leading-6'>
+                Ajouter un ami avec son e-mail
             </label>
 
-            <div className='mt-2 flex gap-4'>
+            <div className='mt-2 flex flex-col gap-4'>
                 <input
                     {...register('email')}
                     type='text'
                     className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                     placeholder='you@example.com'
                 />
-                <Button>Add</Button>
+                <Button>Ajouter</Button>
             </div>
             <p className='mt-1 text-sm text-red-600'>{errors.email?.message}</p>
             {showSuccessState ? (
-                <p className='mt-1 text-sm text-green-600'>Friend request sent!</p>
+                <p className='mt-1 text-sm text-green-600'>Demmande d'ami envoyée</p>
             ) : null}
         </form>
     )
