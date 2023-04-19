@@ -16,6 +16,7 @@ const FriendRequestsSideBarOptions = ({sessionId, initialUnseenRequestCount}: Fr
             <div className="text-gray-400 border-gray-200 group-hover:border-indigo-600 group:hover:text-indigo-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white">
                 <User className="h-5 w-5" />
             </div>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             <p className={'truncate'}>Demandes d'ami</p>
             {unseenRequestCount > 0 ? (
                 <div className={"rounded-full w-5 h-5 text-xs flex justify-center items-center bg-indigo-600 text-white"}>{unseenRequestCount}</div>
