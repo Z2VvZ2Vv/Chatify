@@ -15,3 +15,9 @@ type Message = {
 	text: string,
 	timestamp: number
 }
+
+type FriendRequest = {
+	id: string,
+	senderId: string,
+	receiverId: string
+}
