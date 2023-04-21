@@ -1,6 +1,5 @@
 import { Providers } from '@/components/Providers';
 import './globals.css';
-import styles from './main.module.scss';
 
 export const metadata = {
 	title: 'Create Next App',
@@ -14,7 +13,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={styles.body}>
+			<body className={"bg-[#343541] text-white min-h-100vh"}>
 				<Providers>{children}</Providers>
 			</body>
 		</html>
