@@ -37,13 +37,13 @@ export async function POST(req: Request){
         const messageData: Message = {
             id: nanoid(),
             senderId: session.user.id,
-            text,
+            text: text,
             receiverId: friendID,
             timestamp: Date.now(),
         }
         const message = messageSchema.parse(messageData)
 
-        await db.zadd(`chat${ChatID}:messages`, {
+        await db.zadd(`chat:${ChatID}:messages`, {
             score: timestamp,
             member: JSON.stringify(message)
         })
