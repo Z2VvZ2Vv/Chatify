@@ -4,6 +4,8 @@ import {fetchRedis} from "@/helpers/redis";
 import {db} from "@/lib/db";
 import {nanoid} from "nanoid";
 import {messageSchema} from "@/lib/validations/message";
+import { pusherServer } from '@/lib/pusher'
+import { toPusherKey } from '@/lib/utils'
 
 type props = {
     text: string,
@@ -34,6 +36,7 @@ export async function POST(req: Request){
 
         const timestamp = Date.now()
 
+
         const messageData: Message = {
             id: nanoid(),
             senderId: session.user.id,
@@ -42,6 +45,13 @@ export async function POST(req: Request){
             timestamp: Date.now(),
         }
         const message = messageSchema.parse(messageData)
+
+        await pusherServer.trigger(toPusherKey(`chat:${ChatID}`), 'incoming-message', message)
+
+        await pusherServer.trigger(toPusherKey(`user:${friendID}:chats`), 'new_message', {
+            ...message,
+            senderEmail: parsedSender.email
+        })
 
         await db.zadd(`chat:${ChatID}:messages`, {
             score: timestamp,
