@@ -23,7 +23,7 @@ export default withAuth(
         }
 
         if (pathname === '/') {
-            return NextResponse.redirect(new URL('/dashboard', req.url))
+            return NextResponse.redirect(new URL('/dashboard/add', req.url))
         }
 
         if (!isAuth && isAccessingSensitiveRoute) {
