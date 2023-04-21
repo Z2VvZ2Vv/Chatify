@@ -1,8 +1,9 @@
-import { MailPlusIcon, UserPlus } from 'lucide-react'
+import { MailPlusIcon, UserPlus, Send } from 'lucide-react'
 
 export const Icons = {
     MailPlusIcon,
-    UserPlus
+    UserPlus,
+    Send
 }
 
 export type Icon = keyof typeof Icons
