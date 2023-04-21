@@ -84,7 +84,7 @@ const Layout = async ({ children }: LayoutProps) => {
 							<div className="flex flex-1 items-center gap-x-4 px-6 py-6 text-sm font-semibold leading-6">
 								<div className='flex flex-1 items-center gap-x-4 py-3 text-sm font-semibold leading-6'>
 									<div className='flex flex-col'>
-										<span className='text-xs' aria-hidden='true'>
+										<span className='text-md font-normal' aria-hidden='true'>
 											{session.user.email}
 										</span>
 									</div>
