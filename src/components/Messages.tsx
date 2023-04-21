@@ -1,10 +1,9 @@
 'use client'
 
-import { pusherClient } from '@/lib/pusher'
-import { cn, toPusherKey } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { Message } from '@/lib/validations/message'
 import { format } from 'date-fns'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 type MessagesProps = {
     initialMessages: Message[]
@@ -13,8 +12,9 @@ type MessagesProps = {
     chatPartner: User
 }
 
-const Messages = ({ initialMessages, sessionId, ChatID }: MessagesProps) => {
+const Messages = ({ initialMessages, sessionId, ChatID, chatPartner }: MessagesProps) => {
     const [messages, setMessages] = useState<Message[]>(initialMessages)
+    console.log(initialMessages)
 
     const scrollDownRef = useRef<HTMLDivElement | null>(null)
 
@@ -24,10 +24,9 @@ const Messages = ({ initialMessages, sessionId, ChatID }: MessagesProps) => {
 
     return (
         <div
-            ref={scrollDownRef}
             id='messages'
-            className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto'>
-        <div/>
+            className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>
+            <div ref={scrollDownRef} />
 
             {messages.map((message, index) => {
                 const isCurrentUser = message.senderId === sessionId
@@ -62,8 +61,8 @@ const Messages = ({ initialMessages, sessionId, ChatID }: MessagesProps) => {
                     })}>
                   {message.text}{' '}
                     <span className='ml-2 text-xs text-gray-400'>
-                        {formatTimestamp(message.timestamp)}
-                    </span>
+                    {formatTimestamp(message.timestamp)}
+                  </span>
                 </span>
                             </div>
                         </div>
