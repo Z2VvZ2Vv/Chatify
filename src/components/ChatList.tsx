@@ -4,7 +4,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 
-import { chatHrefConstructor, toPusherKey } from '@/lib/utils'
+import { chatLinkBuilder, toPusherKey } from '@/lib/utils'
 import { pusherClient } from '@/lib/pusher'
 
 import UnseenChat from "@/components/UnseenChat";
@@ -35,7 +35,7 @@ const ChatList = ({friends, sessionId}: ChatListProps) => {
         const chatHandler = (message: MessageType) => {
             const shouldNotify =
                 pathname !==
-                `/dashboard/chat/${chatHrefConstructor(sessionId, message.senderId)}`
+                `/dashboard/chat/${chatLinkBuilder(sessionId, message.senderId)}`
 
             if (!shouldNotify) return
 
@@ -80,7 +80,7 @@ const ChatList = ({friends, sessionId}: ChatListProps) => {
                     return unseenMessage.senderId === friend.id}).length
                 return (
                     <li key={friend.id}>
-                        <a className={"truncate hover:text-indigo-600 hover:bg-gray-50 flex items-center group gap-x-3 rounded-md p-2 text-xs leading-6 font-semibold"} href={`/dashboard/chat/${chatHrefConstructor(sessionId, friend.id)}`}>
+                        <a className={"truncate hover:text-indigo-600 hover:bg-gray-50 flex items-center group gap-x-3 rounded-md p-2 text-xs leading-6 font-semibold"} href={`/dashboard/chat/${chatLinkBuilder(sessionId, friend.id)}`}>
                             {friend.email}
                             {unseenMessagesCount > 0 ? (
                                 <div className={"rounded-full w-5 h-5 text-xs flex justify-center items-center bg-indigo-600 text-white"}>{unseenMessagesCount}</div>
