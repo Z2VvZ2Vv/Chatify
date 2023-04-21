@@ -4,7 +4,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import axios from "axios";
-import {toast} from "react-hot-toast";
+import {toast} from "react-hot-toast"
+import {Send} from "lucide-react";
 
 type ChatInputProps = {
     chatPartner: User,
@@ -15,18 +16,15 @@ const ChatInput = ({ chatPartner, ChatID }: ChatInputProps) => {
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const sendMessage = async () => {
+        if(!input) return
+        if(input.length > 600) return
         setIsLoading(true)
         textareaRef.current?.focus()
         try {
             await axios.post('/api/message/send', { text: input, ChatID: ChatID })
             setInput('')
         } catch (error) {
-            if (error instanceof Error) {
-                if (error.message === 'Must be less than 600 characters') {
-                    toast.error('Must be less than 600 characters')
-                }
             toast.error('Une erreur est survenue')
-            }
         } finally {
             setIsLoading(false)
         }
@@ -37,13 +35,14 @@ const ChatInput = ({ chatPartner, ChatID }: ChatInputProps) => {
             <div className='relative flex-1 overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-[#FFFFFF]/[0.1] focus-within:ring-2'>
                 <TextareaAutosize
                     ref={textareaRef}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !e.shiftKey) {
-                            e.preventDefault()
+                    onKeyDown={(event) => {
+                        if (event.key === 'Enter' && !event.shiftKey) {
+                            event.preventDefault()
                             sendMessage()
                         }
                     }}
                     rows={1}
+                    maxLength={600}
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder={`Vous parlez à ${chatPartner.email}`}
@@ -52,11 +51,12 @@ const ChatInput = ({ chatPartner, ChatID }: ChatInputProps) => {
 
 
 
-                <div className='absolute right-0 bottom-0 flex justify-between'>
+                <div className='absolute right-0 bottom-0 pb-2 pr-2 flex justify-between'>
                     <div className='flex-shrin-0'>
-                        <Button isLoading={isLoading} onClick={() => sendMessage()} type='submit'>
-                            Envoyer le message
-                        </Button>
+                        {!input ? (
+                            <Send color={'#6B7280'}/>
+                        ): (
+                            <Send color={'#16E067'} onClick={() => sendMessage()} /> )}
                     </div>
                 </div>
             </div>
