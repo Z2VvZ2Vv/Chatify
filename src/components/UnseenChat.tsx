@@ -1,4 +1,4 @@
-import { chatHrefConstructor, cn } from '@/lib/utils'
+import { chatLinkBuilder, cn } from '@/lib/utils'
 import { toast, type Toast } from 'react-hot-toast'
 
 type UnseenChatProps = {
@@ -18,7 +18,7 @@ const UnseenChat = ({ sessionId, senderId, senderEmail, senderMessage, notif }: 
             )}>
             <a
                 onClick={() => toast.dismiss(notif.id)}
-                href={`/dashboard/chat/${chatHrefConstructor(sessionId, senderId)}`}
+                href={`/dashboard/chat/${chatLinkBuilder(sessionId, senderId)}`}
                 className='flex-1 w-0 p-4'>
                 <div className='flex items-start'>
                     <div className='ml-3 flex-1 truncate'>
