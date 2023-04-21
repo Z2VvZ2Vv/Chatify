@@ -13,7 +13,7 @@ type MessagesProps = {
     chatPartner: User
 }
 
-const Messages = ({ initialMessages, sessionId, ChatID, chatPartner }: MessagesProps) => {
+const Messages = ({ initialMessages, sessionId, ChatID }: MessagesProps) => {
     const [messages, setMessages] = useState<Message[]>(initialMessages)
 
     useEffect(() => {
