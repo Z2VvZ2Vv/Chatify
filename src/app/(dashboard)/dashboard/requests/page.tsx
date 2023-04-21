@@ -20,6 +20,7 @@ const page = async ({}) => {
     }))
     return (
         <main className="mt-56 m-auto">
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             <h1 className={'font-bold text-5xl mb-8'}>Demandes d'ami</h1>
             <div className={'flex flex-col gap--4'}>
                 <FriendRequests sessionId={session.user.id} incomingFriendRequests={incomingFriendRequests}/>
