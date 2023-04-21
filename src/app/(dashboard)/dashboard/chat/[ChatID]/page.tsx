@@ -7,7 +7,6 @@ import {messageArraySchema} from "@/lib/validations/message";
 import Messages from "@/components/Messages";
 import ChatInput from "@/components/ChatInput";
 
-
 type ChatProps = {
     params: {
         ChatID: string
@@ -27,25 +26,35 @@ async function getChatMessages(ChatID: string) {
         const dbMessages = results.map((message) => JSON.parse(message) as Message)
 
         const reversedDbMessages = dbMessages.reverse()
+        console.log(results, dbMessages, reversedDbMessages)
 
         return messageArraySchema.parse(reversedDbMessages)
+
     } catch (error) {
         notFound()
     }
 }
-const page = async ({params}: ChatProps) => {
+const page = async ({ params }: ChatProps) => {
     const { ChatID } = params
     const session = await getServerSession(authOptions)
-
-    if(!session) notFound()
+    if (!session) notFound()
 
     const { user } = session
+
     const [userId1, userId2] = ChatID.split('--')
 
-    if(user.id !== userId1 && user.id !== userId2) notFound()
+    if (user.id !== userId1 && user.id !== userId2) {
+        notFound()
+    }
 
     const chatPartnerId = user.id === userId1 ? userId2 : userId1
-    const chatPartner = (await db.get(`user:${chatPartnerId}`)) as User
+    // new
+
+    const chatPartnerRaw = (await fetchRedis(
+        'get',
+        `user:${chatPartnerId}`
+    )) as string
+    const chatPartner = JSON.parse(chatPartnerRaw) as User
     const initialMessages = await getChatMessages(ChatID)
 
     return (
@@ -57,7 +66,11 @@ const page = async ({params}: ChatProps) => {
                         </div>
                     </div>
             </div>
-            <Messages sessionId={session.user.id} initialMessages={initialMessages} chatPartner={chatPartner} ChatID={""} />
+
+            <Messages ChatID={ChatID}
+                      chatPartner={chatPartner}
+                      sessionId={session.user.id}
+                      initialMessages={initialMessages} />
             <ChatInput chatPartner={chatPartner} ChatID={ChatID}/>
         </div>
     )
