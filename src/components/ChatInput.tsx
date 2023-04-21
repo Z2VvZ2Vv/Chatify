@@ -2,7 +2,6 @@
 
 import TextareaAutosize from "react-textarea-autosize";
 import { useRef, useState } from "react";
-import { Button } from "@/components/ui/Button";
 import axios from "axios";
 import {toast} from "react-hot-toast"
 import {Send} from "lucide-react";
