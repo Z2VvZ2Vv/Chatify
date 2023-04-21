@@ -1,9 +1,10 @@
 'use client'
 
-import { cn } from '@/lib/utils'
+import { cn, toPusherKey } from '@/lib/utils'
+import { pusherClient } from '@/lib/pusher'
 import { Message } from '@/lib/validations/message'
 import { format } from 'date-fns'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 type MessagesProps = {
     initialMessages: Message[]
@@ -14,7 +15,25 @@ type MessagesProps = {
 
 const Messages = ({ initialMessages, sessionId, ChatID, chatPartner }: MessagesProps) => {
     const [messages, setMessages] = useState<Message[]>(initialMessages)
-    console.log(initialMessages)
+
+    useEffect(() => {
+        pusherClient.subscribe(
+            toPusherKey(`chat:${ChatID}`)
+        )
+
+        const messageHandler = (message: Message) => {
+            setMessages((prev) => [message, ...prev])
+        }
+
+        pusherClient.bind('incoming-message', messageHandler)
+
+        return () => {
+            pusherClient.unsubscribe(
+                toPusherKey(`chat:${ChatID}`)
+            )
+            pusherClient.unbind('incoming-message', messageHandler)
+        }
+    }, [ChatID])
 
     const scrollDownRef = useRef<HTMLDivElement | null>(null)
 
@@ -51,7 +70,7 @@ const Messages = ({ initialMessages, sessionId, ChatID, chatPartner }: MessagesP
                                     }
                                 )}>
                 <span
-                    className={cn('px-4 py-2 rounded-lg inline-block', {
+                    className={cn('px-4 py-2 rounded-lg inline-block max-w-[50vw] overflow-hidden break-words', {
                         'bg-indigo-600 text-white': isCurrentUser,
                         'bg-gray-200 text-gray-900': !isCurrentUser,
                         'rounded-br-none':
