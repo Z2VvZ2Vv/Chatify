@@ -1,11 +1,12 @@
 'use client';
 
 import { Button } from '@/components/ui/Button';
-import { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { toast } from 'react-hot-toast';
+import { Icons } from "@/components/Icons";
 
-const Page: FC = () => {
+const Page = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	async function login(e: React.FormEvent<HTMLFormElement>) {
@@ -31,7 +32,7 @@ const Page: FC = () => {
 				className='flex flex-col items-center w-full max-w-md m-auto mt-56 space-y-8'
 				onSubmit={(e) => login(e)}>
 				<h1 className='mt-6 text-3xl font-bold tracking-tight text-center'>
-					Chatify
+					<Icons.Logo className='h-8 w-auto text-indigo-600' />
 				</h1>
 				<input
 					type='text'
