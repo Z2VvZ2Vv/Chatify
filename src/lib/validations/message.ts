@@ -5,7 +5,7 @@ export const messageSchema = z.object({
     id: z.string(),
     senderId: z.string(),
     receiverId: z.string(),
-    text: z.string().max(600, "Must be less than 600 characters"),
+    text: z.string().max(600, "Le message doit faire moins de 600 caractères"),
     timestamp: z.number()
 })
 
