@@ -45,17 +45,19 @@ const Layout = async ({ children }: LayoutProps) => {
 	return (
 		<div className='w-full flex h-screen'>
 			<div className='hidden md:flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-y-auto bg-neutral-950 px-6'>
-				<Link href={'/dashboard'} className="flex h-16 shrink-0 items-center">Chatify</Link>
+				<Link href={'/dashboard'} className="flex h-8 mt-12 shrink-0 items-center">
+					<Icons.Logo className='h-8 w-auto text-indigo-600' />
+				</Link>
 
 					{friends.length > 0 ? (
-						<div className="text-xs font-semibold leading-6 text-gray-400">Vos conversations</div>
+						<div className="text-xs mt-12 font-semibold leading-6 text-gray-400">Vos conversations</div>
 					): null}
 
 				<nav className="flex flex-1 flex-col">
 					<ul role={"list"} className={"flex flex-1 flex-col gap-y-7"}>
 						<li><ChatList sessionId={session.user.id} friends={friends} /></li>
 						<li>
-							<div className={"text-xs font-semibold leading-6 text-gray-400"}>Overview</div>
+							<div className={"text-xs font-semibold leading-6 text-gray-400"}>Vue globale</div>
 							<ul role={"list"} className={"-mx-2 mt-2 space-y-1"}>
 								{sidebarOptions.map((option) => {
 									const Icon = Icons[option.Icon]
