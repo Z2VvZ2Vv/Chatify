@@ -2,14 +2,13 @@ import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Loader2 } from 'lucide-react';
 import { ButtonHTMLAttributes } from 'react';
-import styles from '../../app/main.module.scss';
 
 const buttonVariants = cva(
 	'active:scale-95 inline-flex items-center justify-center rounded-md text-sm font-medium transition-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slae-400 disabled:opacity-50 disabled:pointer-events-none',
 	{
 		variants: {
 			variant: {
-				default: `${styles.defaultButton} bg-blue-800 text-white`,
+				default: 'bg-[#10A37F] text-white hover:bg-[#16bd93]',
 				ghost: 'bg-disabled hover:text-white-900 hover:bg-slate-200',
 			},
 			size: {
