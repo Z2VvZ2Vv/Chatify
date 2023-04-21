@@ -1,7 +1,7 @@
 'use client'
 
 import {useEffect, useState} from "react";
-import {usePathname, useRouter} from "next/navigation";
+import {usePathname} from "next/navigation";
 import {chatHrefConstructor} from "@/lib/utils";
 
 type ChatListProps = {
@@ -11,7 +11,6 @@ type ChatListProps = {
 const ChatList = ({friends, sessionId}: ChatListProps) => {
     const [unseenMessages, setUnseenMessages] = useState<Message[]>([])
 
-    const rounter = useRouter()
     const pathName = usePathname()
 
     useEffect(() => {
