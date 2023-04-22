@@ -8,15 +8,16 @@ import { chatLinkBuilder, toPusherKey } from '@/lib/utils'
 import { pusherClient } from '@/lib/pusher'
 
 import UnseenChat from "@/components/UnseenChat";
-import {fetchRedis} from "@/helpers/redis";
 
 type ChatListProps = {
     friends: User[],
     sessionId: string
+}
 
-type MessageType = {
+type MessageProps = Message & {
     senderEmail: string
-} & Message
+}
+
 const ChatList = ({friends, sessionId}: ChatListProps) => {
     const router = useRouter()
     const pathname = usePathname()
@@ -32,7 +33,7 @@ const ChatList = ({friends, sessionId}: ChatListProps) => {
             setActiveChats((prev) => [...prev, newFriend])
         }
 
-        const chatHandler = (message: MessageType) => {
+        const chatHandler = (message: MessageProps) => {
             const shouldNotify =
                 pathname !==
                 `/dashboard/chat/${chatLinkBuilder(sessionId, message.senderId)}`
