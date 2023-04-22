@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     try {
         const body = await req.json()
 
-        const { id: idToAdd } = z.object({ id: z.string() }).parse(body)
+        const { id: userToAdd } = z.object({ id: z.string() }).parse(body)
 
         const session = await getServerSession(authOptions)
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
         const isAlreadyFriends = await fetchRedis(
             'sismember',
             `user:${session.user.id}:friends`,
-            idToAdd
+            userToAdd
         )
 
         if (isAlreadyFriends) {
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
         const hasFriendRequest = await fetchRedis(
             'sismember',
             `user:${session.user.id}:incoming_friend_requests`,
-            idToAdd
+            userToAdd
         )
 
         if (!hasFriendRequest) {
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
 
         const [userRaw, friendRaw] = (await Promise.all([
             fetchRedis('get', `user:${session.user.id}`),
-            fetchRedis('get', `user:${idToAdd}`),
+            fetchRedis('get', `user:${userToAdd}`),
         ])) as [string, string]
 
         const user = JSON.parse(userRaw) as User
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
 
         await Promise.all([
             pusherServer.trigger(
-                toPusherKey(`user:${idToAdd}:friends`),
+                toPusherKey(`user:${userToAdd}:friends`),
                 'new_friend',
                 user
             ),
@@ -59,9 +59,9 @@ export async function POST(req: Request) {
                 'new_friend',
                 friend
             ),
-            db.sadd(`user:${session.user.id}:friends`, idToAdd),
-            db.sadd(`user:${idToAdd}:friends`, session.user.id),
-            db.srem(`user:${session.user.id}:incoming_friend_requests`, idToAdd),
+            db.sadd(`user:${session.user.id}:friends`, userToAdd),
+            db.sadd(`user:${userToAdd}:friends`, session.user.id),
+            db.srem(`user:${session.user.id}:incoming_friend_requests`, userToAdd),
         ])
 
         return new Response('OK')
