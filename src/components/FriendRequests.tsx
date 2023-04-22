@@ -65,7 +65,6 @@ const FriendRequests = ({sessionId, incomingFriendRequests}: FriendRequestsProps
             )
 
             router.refresh()
-            router.push('/dashboard/requests')
         } catch (error) {
             toast.error('Une erreur est survenue')
         }
