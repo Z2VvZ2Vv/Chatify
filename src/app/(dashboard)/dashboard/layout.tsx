@@ -24,7 +24,7 @@ type sideBarOption = {
 const sidebarOptions: sideBarOption[] = [
 	{
 		id: 1,
-		name: 'Add friend',
+		name: 'Ajouter un ami',
 		href: '/dashboard/add',
 		Icon: 'UserPlus',
 	},
@@ -46,7 +46,7 @@ const Layout = async ({ children }: LayoutProps) => {
 		<div className='w-full flex h-screen'>
 			<div className='hidden md:flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-y-auto bg-neutral-950 px-6'>
 				<Link href={'/dashboard'} className="flex h-8 mt-12 shrink-0 items-center">
-					<Icons.Logo className='h-8 w-auto text-indigo-600' />
+					<Icons.Logo className='h-8 w-auto text-[#10A37F]' />
 				</Link>
 
 					{friends.length > 0 ? (
@@ -65,12 +65,12 @@ const Layout = async ({ children }: LayoutProps) => {
 										<li key={option.id}>
 											<Link
 												href={option.href}
-												className='hover:text-indigo-600 hover:bg-gray-50 group flex gap-3 rounded-md p-2 text-sm leading-6 font-semibold'>
-							<span className='text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'>
-                          <Icon className='h-5 w-5' />
+												className='hover:text-[#10A37F] hover:bg-gray-50 group flex gap-3 rounded-md p-2 text-sm leading-6 font-semibold'>
+							<span className='text-gray-400 border-gray-200 group-hover:border-[#10A37F] group-hover:text-[#10A37F] flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'>
+                          <Icon className='h-6 w-6 ml-1' />
                         </span>
 
-												<span className='truncate'>{option.name}</span>
+												<span className='truncate mt-0.5'>{option.name}</span>
 											</Link>
 										</li>
 									)
