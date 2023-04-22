@@ -29,10 +29,10 @@ const Page = () => {
 	return (
 		<div className='flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px'>
 			<form
-				className='flex flex-col items-center w-full max-w-md m-auto mt-56 space-y-8'
+				className='flex flex-col items-center w-full max-w-md m-auto mt-24 space-y-8'
 				onSubmit={(e) => login(e)}>
-				<h1 className='mt-6 text-3xl font-bold tracking-tight text-center'>
-					<Icons.Logo className='h-8 w-auto text-indigo-600' />
+				<h1 className='mb-12 font-bold tracking-tight text-center'>
+					<Icons.Logo className='h-2 w-2' />
 				</h1>
 				<input
 					type='text'
