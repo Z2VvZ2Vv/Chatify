@@ -80,10 +80,10 @@ const ChatList = ({friends, sessionId}: ChatListProps) => {
                     return unseenMessage.senderId === friend.id}).length
                 return (
                     <li key={friend.id}>
-                        <a className={"truncate hover:text-indigo-600 hover:bg-gray-50 flex items-center group gap-x-3 rounded-md p-2 text-xs leading-6 font-semibold"} href={`/dashboard/chat/${chatLinkBuilder(sessionId, friend.id)}`}>
+                        <a className={"truncate hover:text-[#10A37F] hover:bg-gray-50 flex items-center group gap-x-3 rounded-md p-2 text-xs leading-6 font-semibold"} href={`/dashboard/chat/${chatLinkBuilder(sessionId, friend.id)}`}>
                             {friend.email}
                             {unseenMessagesCount > 0 ? (
-                                <div className={"rounded-full w-5 h-5 text-xs flex justify-center items-center bg-indigo-600 text-white"}>{unseenMessagesCount}</div>
+                                <div className={"rounded-full w-5 h-5 text-xs flex justify-center items-center bg-[#10A37F] text-white"}>{unseenMessagesCount}</div>
                             ): null}
                         </a>
                     </li>
