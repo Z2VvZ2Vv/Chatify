@@ -29,8 +29,14 @@ const AddFriendButton = () => {
 
         } catch (error) {
             setShowSuccessState(false)
+
+            if (email === '') {
+                toast.error('Veuillez entrer un email')
+                return
+            }
+
             if (error instanceof z.ZodError) {
-                toast.error(error.message)
+                toast.error('Veuillez entrer un email valide')
                 return
             }
 
