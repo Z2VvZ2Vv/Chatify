@@ -13,7 +13,6 @@ import {fetchRedis} from "@/helpers/redis";
 type ChatListProps = {
     friends: User[],
     sessionId: string
-}
 
 type MessageType = {
     senderEmail: string
@@ -24,16 +23,12 @@ const ChatList = ({friends, sessionId}: ChatListProps) => {
     const [unseenMessages, setUnseenMessages] = useState<Message[]>([])
     const [activeChats, setActiveChats] = useState<User[]>(friends)
 
-
-
     useEffect(() => {
         pusherClient.subscribe(toPusherKey(`user:${sessionId}:chats`))
         pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`))
 
-        const newFriendHandler = async (newFriend: User) => {
-            const friendList = await fetchRedis('smembers', `user:${sessionId}:friends`) as string[]
-            const isFriend = friendList.includes(newFriend.id || newFriend.email)
-            console.log("Nouvel ami", newFriend)
+        const newFriendHandler = (newFriend: User) => {
+            console.log("Nouvel ami:", newFriend)
             setActiveChats((prev) => [...prev, newFriend])
         }
 
@@ -83,8 +78,7 @@ const ChatList = ({friends, sessionId}: ChatListProps) => {
 
             <div className="text-xs mt-12 font-semibold leading-6 text-gray-400">Vos conversations</div>
 
-            {activeChats.length > 0 ?
-                (activeChats.sort().map((friend) => {
+                {activeChats.sort().map((friend) => {
                     const unseenMessagesCount = unseenMessages.filter((unseenMsg) => {
                         return unseenMsg.senderId === friend.id
                     }).length
@@ -99,8 +93,8 @@ const ChatList = ({friends, sessionId}: ChatListProps) => {
                             </a>
                         </li>
                     )
-                }))
-            : null}
+                })}
+
         </ul>
     )
 }
