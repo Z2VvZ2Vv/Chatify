@@ -15,16 +15,30 @@ const ChatInput = ({ chatPartner, ChatID }: ChatInputProps) => {
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const sendMessage = async () => {
+
+        // Si l'input est vide, on empêche l'envoi
         if(!input) return
+
+        // Si l'input est trop long, on empêche l'envoi
         if(input.length > 600) return
+
+        // On mets loading à true pour l'envoi
         setIsLoading(true)
+
+        // On mets le focus sur le texte area
         textareaRef.current?.focus()
         try {
+
+            // On envoi le message en db
             await axios.post('/api/message/send', { text: input, ChatID: ChatID })
+
+            // On vide l'input
             setInput('')
         } catch (error) {
+            // On afficeh l'erreur dans le toast
             toast.error('Une erreur est survenue')
         } finally {
+            // Une fois le mssage envoye en db́, on mets loading à false
             setIsLoading(false)
         }
     }
