@@ -31,7 +31,7 @@ const UnseenChat = ({ sessionId, senderId, senderEmail, senderMessage, notif }: 
             <div className='flex border-l border-gray-200'>
                 <button
                     onClick={() => toast.dismiss(notif.id)}
-                    className='w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none'>
+                    className='w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-[#10A37F] hover:text-[#16bd93] focus:outline-none'>
                     Fermer
                 </button>
             </div>
