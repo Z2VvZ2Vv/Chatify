@@ -9,7 +9,7 @@ type ProvidersProps = {
 export const Providers = ({ children }: ProvidersProps) => {
 	return (
 		<>
-			<Toaster position='top-center' reverseOrder={false} />
+			<Toaster position='top-right' reverseOrder={false} />
 			{children}
 		</>
 	);
